@@ -8,4 +8,13 @@ type User{
     bookCount: Int
     savedBooks: [Book]
 }
+
+type Book {
+    bookId: ID!
+    authors: [author]
+    description: String
+    title: String
+    image: String
+    link: String
+}
 `
