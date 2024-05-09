@@ -17,4 +17,9 @@ type Book {
     image: String
     link: String
 }
+Set up an Auth type to handle returning data from a profile creating or user login
+type Auth {
+    token: ID!
+    user: User
+}
 `
