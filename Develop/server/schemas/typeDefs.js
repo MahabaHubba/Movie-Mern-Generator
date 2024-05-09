@@ -26,4 +26,15 @@ type Auth {
     user: User
 }
 
+//From Mutation requirement
+type AddBook {
+    authors: [String]
+    description: String
+    title: String
+    bookId: ID!
+    image: String
+    link: String
+}
+
+type Mutation
 `
