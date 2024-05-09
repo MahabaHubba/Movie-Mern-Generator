@@ -36,5 +36,7 @@ type AddBook {
     link: String
 }
 
-type Mutation
+type Mutation {
+    login(email: String!, password:String!): Auth
+}
 `
