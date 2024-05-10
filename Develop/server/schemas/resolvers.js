@@ -27,6 +27,9 @@ const resolvers = {
                 throw AuthenticationError
             }
 
+            const token = signToken(user);
+            return {token, user};
+
         }
     }
 }
