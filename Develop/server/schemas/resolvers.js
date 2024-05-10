@@ -44,6 +44,9 @@ const resolvers = {
             console.log('end')
             return {token, user};
         }, 
+        saveBook: async (parent, {addBook}, context) => {
+
+        },
 
         removeBook: async(parent, args, context) => {
             console.log('start');
@@ -56,7 +59,6 @@ const resolvers = {
                 if(!user) {
                     throw new Error('User not found')
                 } 
-
                 return user
             } catch (error) {
 
