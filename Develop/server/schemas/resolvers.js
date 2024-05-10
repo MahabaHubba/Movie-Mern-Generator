@@ -45,6 +45,18 @@ const resolvers = {
             return {token, user};
         }, 
         saveBook: async (parent, {addBook}, context) => {
+            console.log('start');
+            if(context.user) {
+                const updateUser = await User.findbyIdAndUpdate(
+                    {_id: context._id},
+                    {$push: {saveBooks: addBook}},
+                    {new: true}
+                );
+
+                return updateUser;
+            }
+
+            throw new Error("Unable to fuind User")
 
         },
 
