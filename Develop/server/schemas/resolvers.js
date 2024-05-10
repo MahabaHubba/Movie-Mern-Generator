@@ -13,5 +13,18 @@ const resolvers = {
         }
     },
 
-    Mutation
+    Mutation: {
+        loginUser: async (parent, {email, password}) => {
+            console.log('start');
+            const user = await User.findOne({email});
+            
+            if(!user){
+                throw AuthenticationError
+            }
+
+            const correctPw = await user.isCorrectPassword((password));
+
+
+        }
+    }
 }
