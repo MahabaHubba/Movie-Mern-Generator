@@ -34,9 +34,33 @@ const resolvers = {
 
         addUser: async (parent,{username, email, password}) => {
             console.log('start');
-            const user = await User.create({username, email, password})
+            const user = await User.create(
+                {
+                    username: username,
+                    email: email,
+                    password: password
+                })
             const token = signToken(user);
+            console.log('end')
             return {token, user};
+        }, 
+
+        removeBook: async(parent, args, context) => {
+            console.log('start');
+            try {
+                const user = await User.findbyIdAndUpdate(
+                    {_id: context.user._id},
+                    { $pull: {savedBooks: args}}
+                );
+
+                if(!user) {
+                    throw new Error('User not found')
+                } 
+
+                return user
+            } catch (error) {
+
+            }
         }
     }
 }
