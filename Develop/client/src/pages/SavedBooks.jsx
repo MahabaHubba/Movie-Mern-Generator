@@ -27,7 +27,7 @@ const SavedBooks = () => {
     }
 
     try{
-      const {data} = await removeBook({
+      const {data} = await removeBook({ //eslint-disable-line variable-unused
         variables: {bookId}
       });
 
