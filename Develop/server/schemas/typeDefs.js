@@ -27,11 +27,11 @@ type Auth {
     user: User
 }
 
-type BookInput {
+input BookInput {
+    bookId: ID!
     authors: [String]
     description: String
     title: String
-    bookId: ID!
     image: String
     link: String
 }
@@ -43,6 +43,7 @@ type Mutation {
     removeBook(bookId: ID!): User
 }
 `;
+
 
 module.exports = typeDefs;
 
