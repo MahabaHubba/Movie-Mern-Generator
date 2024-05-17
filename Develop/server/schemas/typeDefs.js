@@ -27,7 +27,6 @@ type Auth {
     user: User
 }
 
-//From Mutation requirement
 type AddBook {
     authors: [String]
     description: String
