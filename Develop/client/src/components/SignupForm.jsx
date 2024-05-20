@@ -44,15 +44,17 @@ const SignupForm = () => {
     // }
 
     try {
+      // const response = await createUser(userFormData);
       // eslint-disable-next-line no-unused-vars
       const { data } = await addUser({
         variables: { ...userFormData }
       });
 
       if (error) {
-        throw new Error("Signup Error!");
+        throw new Error("something went wrong!");
       }
 
+      // Use Use mutation hook to pass in variables from mutations.js (import function from apollo hook and mutations/queries.js)
       console.log(data);
       Auth.login(data.addUser.token);
 

@@ -1,5 +1,5 @@
 const {User} = require('../models');
-const {signToken, AuthenticationError} = require('../utils/auth');
+const {signToken} = require('../utils/auth');
 
 const resolvers = {
     Query: {
@@ -19,12 +19,12 @@ const resolvers = {
             const user = await User.findOne({email});
             
             if(!user){
-                throw AuthenticationError
+                throw new Error('User not found')
             }
 
             const correctPw = await user.isCorrectPassword((password));
             if(!correctPw) {
-                throw AuthenticationError
+                throw new Error('incorrect password')
             }
 
             const token = signToken(user);
@@ -48,7 +48,7 @@ const resolvers = {
             console.log('start');
             if(context.user) {
                 const updateUser = await User.findbyIdAndUpdate(
-                    {_id: context._id},
+                    {_id: context.user._id},
                     {$push: { savedBooks: bookInput }},
                     {new: true}
                 );
@@ -65,7 +65,8 @@ const resolvers = {
             try {
                 const user = await User.findbyIdAndUpdate(
                     {_id: context.user._id},
-                    { $pull: {savedBooks: args}}
+                    { $pull: {savedBooks: args}},
+                    { new: true }
                 );
 
                 if(!user) {
