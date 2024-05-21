@@ -47,14 +47,16 @@ const resolvers = {
         saveBook: async (parent, { bookInput }, context) => {
             console.log('start');
             if(context.user) {
-                const updateUser = await User.findbyIdAndUpdate(
+                const updateUser = await User.findByIdAndUpdate(
                     {_id: context.user._id},
-                    {$push: { savedBooks: bookInput }},
+                    { $push: { savedBooks: bookInput }},
                     {new: true}
                 );
 
                 return updateUser;
+                
             }
+            console.log('end')
 
             throw new Error("Unable to fuind User")
 
@@ -63,7 +65,7 @@ const resolvers = {
         removeBook: async(parent, args, context) => {
             console.log('start');
             try {
-                const user = await User.findbyIdAndUpdate(
+                const user = await User.findByIdAndUpdate(
                     {_id: context.user._id},
                     { $pull: {savedBooks: args}},
                     { new: true }
